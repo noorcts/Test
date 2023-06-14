@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Weather App</string>
+    <string name="loading">Loading...</string>
+    <string name="wait">Please wait...</string>
+    <string name="you_location">Your location!!</string>
+    <string name="kelvin">k</string>
+    <string name="no_data_msg">Sorry, No data available!</string>
+</resources>
