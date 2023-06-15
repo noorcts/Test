@@ -16,17 +16,20 @@ import java.util.concurrent.TimeUnit;
 
 public class Location {
     public MutableLiveData<double[]> latLon = new MutableLiveData<>();
+
     @SuppressLint("MissingPermission")
     public void getLocationData(AppCompatActivity activity, Boolean isLocationPermissionGranted) {
         FusedLocationProviderClient fusedLocationProviderClient =
                 LocationServices.getFusedLocationProviderClient(activity);
 
+        //prepare location request object
         LocationRequest locationRequest = new LocationRequest();
         locationRequest.setInterval(TimeUnit.SECONDS.toMillis(60));
         locationRequest.setFastestInterval(TimeUnit.SECONDS.toMillis(30));
         locationRequest.setMaxWaitTime(TimeUnit.MINUTES.toMillis(2));
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 
+        //calback to handle the response
         LocationCallback locationCallback = new LocationCallback() {
             public void onLocationResult(LocationResult locationResult) {
                 super.onLocationResult(locationResult);
@@ -39,7 +42,7 @@ public class Location {
             }
         };
 
-
+        //call to get the location data
         if (isLocationPermissionGranted) {
             fusedLocationProviderClient.requestLocationUpdates(
                     locationRequest,
